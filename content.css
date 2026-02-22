@@ -1,0 +1,442 @@
+#mlt-root {
+  position: fixed;
+  top: 72px;
+  right: 20px;
+  width: 320px;
+  height: min(74vh, calc(100vh - 92px));
+  max-height: calc(100vh - 92px);
+  z-index: 2147483647;
+  background:
+    radial-gradient(120% 120% at 5% -10%, rgba(88, 182, 255, 0.2), transparent 55%),
+    linear-gradient(165deg, rgba(14, 20, 29, 0.94), rgba(16, 23, 33, 0.9));
+  color: #eef6ff;
+  border: 1px solid rgba(137, 190, 246, 0.34);
+  border-radius: 16px;
+  box-shadow:
+    0 14px 44px rgba(2, 8, 16, 0.58),
+    inset 0 1px 0 rgba(219, 238, 255, 0.1);
+  backdrop-filter: blur(10px);
+  font-family: "Avenir Next", "SF Pro Text", "Segoe UI", sans-serif;
+  padding: 13px;
+  display: flex;
+  flex-direction: column;
+}
+
+#mlt-root.mlt-pos-right {
+  left: auto;
+  right: 20px;
+  transform: none;
+}
+
+#mlt-root.mlt-pos-center {
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+}
+
+#mlt-root.mlt-pos-left {
+  left: 20px;
+  right: auto;
+  transform: none;
+}
+
+#mlt-root * {
+  box-sizing: border-box;
+}
+
+.mlt-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mlt-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mlt-title {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.mlt-close-btn {
+  position: relative;
+  width: 26px;
+  height: 26px;
+  border-radius: 7px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mlt-collapse-btn {
+  position: relative;
+  width: 26px;
+  height: 26px;
+  border-radius: 7px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mlt-settings-icon-btn {
+  position: relative;
+  width: 26px;
+  height: 26px;
+  border-radius: 7px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mlt-icon {
+  width: 15px;
+  height: 15px;
+  fill: none;
+  stroke: #d9ebff;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.mlt-collapse-btn .mlt-icon-out {
+  display: none;
+}
+
+#mlt-root.mlt-collapsed .mlt-collapse-btn .mlt-icon-in {
+  display: none;
+}
+
+#mlt-root.mlt-collapsed .mlt-collapse-btn .mlt-icon-out {
+  display: block;
+}
+
+.mlt-collapse-btn:hover,
+.mlt-settings-icon-btn:hover,
+.mlt-close-btn:hover {
+  background: rgba(159, 212, 255, 0.13);
+}
+
+.mlt-header-lang {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: transparent;
+  color: #eef6ff;
+  border: 0;
+  border-radius: 7px;
+  width: 42px;
+  height: 26px;
+  padding: 0;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+  background-image: none;
+  cursor: pointer;
+  line-height: 26px;
+}
+
+.mlt-header-lang:hover {
+  background: rgba(159, 212, 255, 0.13);
+}
+
+.mlt-switch {
+  position: relative;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  font-size: 11px;
+  user-select: none;
+}
+
+.mlt-switch input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.mlt-switch-track {
+  width: 40px;
+  height: 22px;
+  border-radius: 999px;
+  border: 1px solid rgba(190, 218, 245, 0.24);
+  background: linear-gradient(180deg, #6d7d90, #4b596b);
+  display: inline-flex;
+  align-items: center;
+  padding: 2px;
+  box-shadow: inset 0 1px 2px rgba(5, 9, 14, 0.4);
+  transition: background 0.18s ease, border-color 0.18s ease;
+}
+
+.mlt-switch-knob {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #ffffff, #dbeafe);
+  box-shadow: 0 1px 4px rgba(7, 12, 18, 0.35);
+  transform: translateX(0);
+  transition: transform 0.2s ease;
+}
+
+.mlt-switch input:checked ~ .mlt-switch-track {
+  border-color: rgba(70, 210, 176, 0.65);
+  background: linear-gradient(180deg, #3fb99a, #2d977e);
+}
+
+.mlt-switch input:checked ~ .mlt-switch-track .mlt-switch-knob {
+  transform: translateX(18px);
+}
+
+.mlt-body {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  flex: 1;
+}
+
+.mlt-model-row {
+  margin-top: 10px;
+  font-size: 12px;
+}
+
+.mlt-model-row label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.mlt-model-select,
+.mlt-model-custom {
+  width: 62%;
+  background: rgba(11, 17, 24, 0.88);
+  color: #eef6ff;
+  border: 1px solid rgba(137, 190, 246, 0.4);
+  border-radius: 8px;
+  padding: 5px 8px;
+  font-size: 11px;
+}
+
+.mlt-model-custom {
+  margin-top: 6px;
+  width: 100%;
+}
+
+.mlt-coach-row {
+  margin-top: 8px;
+  font-size: 12px;
+}
+
+.mlt-coach-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.mlt-coach-box {
+  margin-top: 6px;
+  padding: 8px;
+  border-radius: 9px;
+  border: 1px solid rgba(137, 190, 246, 0.24);
+  background: rgba(10, 18, 28, 0.5);
+}
+
+.mlt-coach-tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.mlt-coach-tab {
+  border: 1px solid rgba(137, 190, 246, 0.35);
+  background: rgba(8, 15, 23, 0.85);
+  color: #cde8ff;
+  border-radius: 7px;
+  padding: 2px 8px;
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.mlt-coach-tab.active {
+  border-color: rgba(156, 214, 255, 0.9);
+  color: #ffffff;
+}
+
+.mlt-coach-question {
+  font-size: 10px;
+  color: #a7cbec;
+}
+
+.mlt-coach-answer {
+  margin-top: 4px;
+  font-size: 11px;
+  color: #e8f4ff;
+  line-height: 1.35;
+  white-space: pre-line;
+}
+
+.mlt-coach-keywords {
+  font-size: 10px;
+  color: #9fd4ff;
+}
+
+.mlt-coach-separator {
+  margin: 6px 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    rgba(143, 196, 245, 0.05) 0%,
+    rgba(143, 196, 245, 0.5) 50%,
+    rgba(143, 196, 245, 0.05) 100%
+  );
+}
+
+.mlt-coach-main-answer {
+  color: #e8f4ff;
+}
+
+.mlt-coach-example {
+  margin-top: 6px;
+  color: #cfe8ff;
+}
+
+.mlt-status {
+  min-height: 18px;
+  font-size: 12px;
+  color: #8ed0ff;
+  flex: 1;
+}
+
+.mlt-status[data-error="true"] {
+  color: #ff9c9c;
+}
+
+.mlt-status-row {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.mlt-list {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 2px;
+}
+
+.mlt-list-section {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  flex: 1;
+}
+
+.mlt-list-toggle {
+  width: 24px;
+  height: 20px;
+  border: 0;
+  background: transparent;
+  color: #d9ebff;
+  border-radius: 6px;
+  padding: 0;
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mlt-list-caret {
+  font-size: 13px;
+  line-height: 1;
+  transform: rotate(180deg);
+  transition: transform 0.18s ease;
+}
+
+.mlt-list-section.collapsed .mlt-list {
+  display: none;
+}
+
+#mlt-root.mlt-list-collapsed .mlt-list-caret {
+  transform: rotate(0deg);
+}
+
+#mlt-root.mlt-list-collapsed {
+  height: auto;
+}
+
+#mlt-root.mlt-list-collapsed .mlt-list-section {
+  flex: 0;
+  min-height: auto;
+}
+
+.mlt-item {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+  border: 1px solid rgba(194, 219, 243, 0.17);
+  border-radius: 10px;
+  padding: 8px;
+}
+
+.mlt-source {
+  font-size: 11px;
+  color: #c7d7e8;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.mlt-target {
+  margin-top: 4px;
+  font-size: 13px;
+  color: #ffffff;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.mlt-meta {
+  margin-top: 5px;
+  font-size: 10px;
+  color: #86a3be;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+#mlt-root.mlt-collapsed {
+  width: 250px;
+  height: auto;
+  max-height: none;
+  padding-bottom: 10px;
+}
+
+#mlt-root.mlt-collapsed .mlt-header-lang,
+#mlt-root.mlt-collapsed .mlt-settings-icon-btn {
+  display: none;
+}
+
+#mlt-root.mlt-collapsed .mlt-body {
+  display: none;
+}
+
+#mlt-root.mlt-hidden {
+  display: none !important;
+}

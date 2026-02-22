@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>feelcalm</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        width: 280px;
+        padding: 12px;
+        font-family: "Avenir Next", "SF Pro Text", "Segoe UI", sans-serif;
+        background: #0f1722;
+        color: #eaf4ff;
+      }
+      .title {
+        font-size: 14px;
+        font-weight: 700;
+        margin-bottom: 10px;
+      }
+      .row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+      button {
+        border: 1px solid rgba(137, 190, 246, 0.42);
+        background: linear-gradient(180deg, rgba(18, 31, 45, 0.95), rgba(11, 18, 28, 0.9));
+        color: #dff0ff;
+        border-radius: 9px;
+        padding: 8px;
+        font-size: 12px;
+        cursor: pointer;
+      }
+      button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+      .full {
+        margin-top: 8px;
+        width: 100%;
+      }
+      .status {
+        margin-top: 10px;
+        min-height: 16px;
+        font-size: 12px;
+        color: #9fd4ff;
+      }
+      .status.err {
+        color: #ff9ea7;
+      }
+      .field-label {
+        font-size: 12px;
+        display: block;
+        margin-bottom: 4px;
+        color: #a8c7e6;
+      }
+      .field-control {
+        width: 100%;
+        border: 1px solid rgba(137, 190, 246, 0.42);
+        background: rgba(18, 31, 45, 0.95);
+        color: #dff0ff;
+        border-radius: 9px;
+        padding: 8px;
+        font-size: 12px;
+      }
+      textarea.field-control {
+        min-height: 110px;
+        max-height: 180px;
+        resize: vertical;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="title">feelcalm</div>
+    <div class="row">
+      <button id="showBtn">Show panel</button>
+      <button id="hideBtn">Hide panel</button>
+    </div>
+    <div style="margin-top:8px">
+      <label for="positionSelect" class="field-label">Panel position</label>
+      <select id="positionSelect" class="field-control">
+        <option value="right">Right</option>
+        <option value="center">Center</option>
+        <option value="left">Left</option>
+      </select>
+    </div>
+    <div style="margin-top:8px">
+      <label for="resumeText" class="field-label">Resume context for Coach</label>
+      <textarea id="resumeText" class="field-control" placeholder="Paste your resume/summary here..."></textarea>
+      <button id="saveResumeBtn" class="full">Save resume context</button>
+    </div>
+    <button id="settingsBtn" class="full">Open settings</button>
+    <div id="status" class="status">Open Meet tab to control panel.</div>
+
+    <script src="popup.js"></script>
+  </body>
+</html>

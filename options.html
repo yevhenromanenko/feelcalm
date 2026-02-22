@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/icon32.png" />
+    <title>feelcalm settings</title>
+    <style>
+      :root {
+        --bg-top: #cde9e5;
+        --bg-bottom: #ecf6f3;
+        --card: rgba(255, 255, 255, 0.86);
+        --text-main: #102330;
+        --text-sub: #45626b;
+        --line: #b4d0cf;
+        --focus: #1f8478;
+        --btn-start: #12605b;
+        --btn-end: #1e8578;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Avenir Next", "Avenir", "Trebuchet MS", "Segoe UI", sans-serif;
+        color: var(--text-main);
+        background:
+          radial-gradient(circle at 90% 5%, rgba(95, 176, 168, 0.26) 0%, rgba(95, 176, 168, 0) 38%),
+          radial-gradient(circle at 8% 100%, rgba(146, 194, 179, 0.36) 0%, rgba(146, 194, 179, 0) 40%),
+          linear-gradient(180deg, var(--bg-top), var(--bg-bottom));
+      }
+
+      .wrap {
+        width: min(920px, calc(100% - 40px));
+        margin: 28px auto;
+        background: var(--card);
+        border: 1px solid rgba(255, 255, 255, 0.7);
+        border-radius: 22px;
+        box-shadow: 0 16px 48px rgba(14, 45, 54, 0.12);
+        backdrop-filter: blur(4px);
+        padding: 28px 26px 24px;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 5px 10px;
+        border-radius: 999px;
+        font-size: 11px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #165e56;
+        background: rgba(151, 216, 196, 0.38);
+        border: 1px solid rgba(23, 121, 101, 0.19);
+      }
+
+      h1 {
+        margin: 10px 0 6px;
+        font-size: clamp(30px, 3.2vw, 44px);
+        line-height: 1.05;
+        letter-spacing: -0.03em;
+      }
+
+      .subtitle {
+        margin: 0 0 22px;
+        font-size: 15px;
+        color: var(--text-sub);
+      }
+
+      .field {
+        margin-bottom: 16px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 14px;
+        font-weight: 600;
+        color: #1a3a45;
+      }
+
+      .label-row {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 8px;
+      }
+
+      .label-row label {
+        margin-bottom: 0;
+      }
+
+      input,
+      select {
+        width: 100%;
+        padding: 13px 14px;
+        border-radius: 14px;
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.86);
+        font-size: 18px;
+        color: #102330;
+        transition: border-color 0.16s ease, box-shadow 0.16s ease, transform 0.16s ease;
+      }
+
+      input::placeholder {
+        color: #7b9096;
+      }
+
+      input:focus,
+      select:focus {
+        outline: none;
+        border-color: var(--focus);
+        box-shadow: 0 0 0 4px rgba(31, 132, 120, 0.16);
+        transform: translateY(-1px);
+      }
+
+      .checkbox-field {
+        margin-top: 4px;
+      }
+
+      .checkbox {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 16px;
+        color: #1a3742;
+        font-weight: 500;
+      }
+
+      .checkbox input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+        margin: 0;
+        accent-color: #1c7d72;
+      }
+
+      .actions {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-top: 4px;
+      }
+
+      button {
+        border: 0;
+        border-radius: 14px;
+        background: linear-gradient(140deg, var(--btn-start), var(--btn-end));
+        color: #f7ffff;
+        padding: 12px 18px;
+        font-size: 20px;
+        font-weight: 600;
+        cursor: pointer;
+        box-shadow: 0 10px 28px rgba(18, 96, 91, 0.28);
+        transition: transform 0.14s ease, box-shadow 0.14s ease, filter 0.14s ease;
+      }
+
+      button:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 14px 30px rgba(18, 96, 91, 0.35);
+        filter: saturate(1.05);
+      }
+
+      button:active {
+        transform: translateY(0);
+      }
+
+      .status {
+        min-height: 22px;
+        font-size: 14px;
+        color: #1f6e66;
+        font-weight: 600;
+      }
+
+      .hint {
+        font-size: 15px;
+        color: #4d6971;
+        margin: 8px 0 0;
+        line-height: 1.45;
+      }
+
+      code {
+        background: rgba(196, 212, 214, 0.45);
+        padding: 3px 7px;
+        border-radius: 8px;
+        font-size: 0.94em;
+      }
+
+      .info-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        border-radius: 10px;
+        border: 1px solid #8cbfb8;
+        background: rgba(210, 237, 232, 0.55);
+        color: #145f58;
+        box-shadow: none;
+        padding: 6px 10px;
+        font-size: 13px;
+        font-weight: 700;
+        line-height: 1.1;
+        letter-spacing: 0.01em;
+        white-space: nowrap;
+      }
+
+      .info-btn::before {
+        content: "?";
+        display: inline-grid;
+        place-items: center;
+        width: 17px;
+        height: 17px;
+        border-radius: 6px;
+        border: 1px solid #76b4ac;
+        background: rgba(255, 255, 255, 0.7);
+        font-size: 11px;
+        font-weight: 800;
+      }
+
+      .info-btn:hover {
+        transform: translateY(0);
+        box-shadow: none;
+        filter: none;
+        background: rgba(199, 231, 225, 0.75);
+      }
+
+      .info-btn:focus-visible {
+        outline: none;
+        border-color: var(--focus);
+        box-shadow: 0 0 0 3px rgba(31, 132, 120, 0.16);
+      }
+
+      .info-btn:active {
+        transform: translateY(0);
+      }
+
+      .modal {
+        position: fixed;
+        inset: 0;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        background: rgba(10, 30, 34, 0.38);
+        padding: 16px;
+        z-index: 20;
+      }
+
+      .modal.open {
+        display: flex;
+      }
+
+      .modal-card {
+        width: min(560px, 100%);
+        background: #f8fffd;
+        border: 1px solid #b7d7d2;
+        border-radius: 16px;
+        box-shadow: 0 18px 40px rgba(14, 45, 54, 0.24);
+        padding: 16px;
+      }
+
+      .modal-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        margin-bottom: 8px;
+      }
+
+      .modal-title {
+        margin: 0;
+        font-size: 20px;
+      }
+
+      .modal-close {
+        width: 30px;
+        height: 30px;
+        border-radius: 10px;
+        border: 1px solid #b6d4d1;
+        background: #ffffff;
+        box-shadow: none;
+        color: #234952;
+        font-size: 16px;
+        font-weight: 700;
+        padding: 0;
+      }
+
+      .modal-close:hover {
+        box-shadow: none;
+      }
+
+      .modal-list {
+        margin: 6px 0 12px;
+        padding-left: 18px;
+        color: #234952;
+        line-height: 1.45;
+      }
+
+      .modal-note {
+        margin: 0;
+        color: #355963;
+        font-size: 14px;
+      }
+
+      .modal-note a {
+        color: #106860;
+        font-weight: 600;
+      }
+
+      @media (max-width: 740px) {
+        .wrap {
+          width: calc(100% - 22px);
+          margin: 12px auto;
+          border-radius: 18px;
+          padding: 18px 14px;
+        }
+
+        h1 {
+          font-size: 33px;
+        }
+
+        input,
+        select {
+          font-size: 16px;
+          padding: 12px 12px;
+        }
+
+        button {
+          width: 100%;
+          font-size: 18px;
+        }
+
+        .actions {
+          display: block;
+        }
+
+        .status {
+          margin-top: 10px;
+        }
+
+        .label-row {
+          align-items: center;
+        }
+
+        .info-btn {
+          font-size: 12px;
+          padding: 6px 9px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="eyebrow">feelcalm extension</div>
+      <h1>Settings for calm meetings</h1>
+      <p class="subtitle">Configure translation once, then use it directly in Google Meet.</p>
+
+      <div class="field">
+        <div class="label-row">
+          <label for="apiKey">OpenAI API key</label>
+          <button id="apiKeyInfoBtn" class="info-btn" type="button" aria-label="How to get OpenAI API key">
+            How to get key
+          </button>
+        </div>
+        <input id="apiKey" type="password" placeholder="sk-..." autocomplete="off" />
+      </div>
+
+      <div class="field">
+        <label for="model">Model</label>
+        <select id="model">
+          <option value="gpt-4o-mini">gpt-4o-mini</option>
+          <option value="gpt-4.1-mini">gpt-4.1-mini</option>
+          <option value="gpt-4.1-nano">gpt-4.1-nano</option>
+          <option value="gpt-4.1">gpt-4.1</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="targetLang">Default target language</label>
+        <select id="targetLang">
+          <option value="uk">Ukrainian</option>
+          <option value="ru">Russian</option>
+        </select>
+      </div>
+
+      <div class="field checkbox-field">
+        <label class="checkbox">
+          <input id="enabled" type="checkbox" />
+          Enable translation by default
+        </label>
+      </div>
+
+      <div class="actions">
+        <button id="saveBtn">Save settings</button>
+        <div id="status" class="status"></div>
+      </div>
+
+      <p class="hint">
+        On Meet page enable captions first. Then the extension listens to caption updates and translates them.
+      </p>
+      <p class="hint">
+        Open this page any time via extensions list -> <code>feelcalm</code> -> Details -> Extension options.
+      </p>
+    </div>
+
+    <div id="apiKeyInfoModal" class="modal" aria-hidden="true">
+      <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="apiKeyInfoTitle">
+        <div class="modal-head">
+          <h2 id="apiKeyInfoTitle" class="modal-title">How to get OpenAI API key</h2>
+          <button id="apiKeyInfoCloseBtn" class="modal-close" type="button" aria-label="Close">x</button>
+        </div>
+        <ol class="modal-list">
+          <li>Sign in to your OpenAI account.</li>
+          <li>Open API keys page.</li>
+          <li>Click Create new secret key.</li>
+          <li>Copy the key once and paste it into this field.</li>
+        </ol>
+        <p class="modal-note">
+          Open page:
+          <a href="https://platform.openai.com/api-keys" target="_blank" rel="noopener noreferrer">
+            platform.openai.com/api-keys
+          </a>
+        </p>
+      </div>
+    </div>
+
+    <script src="options.js"></script>
+  </body>
+</html>
