@@ -3,7 +3,7 @@ import path from "node:path";
 import zlib from "node:zlib";
 
 const sizes = [16, 32, 48, 128];
-const outDir = path.resolve("icons");
+const outDir = path.resolve("public/icons");
 
 function clamp01(v) {
   return Math.max(0, Math.min(1, v));

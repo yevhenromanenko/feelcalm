@@ -20,14 +20,32 @@ Browser extension for Google Meet that reads live captions and translates Englis
 
 ## Quick start (development)
 
-1. Open Chrome: `chrome://extensions`.
-2. Enable **Developer mode**.
-3. Click **Load unpacked** and select this folder:
-   - `/Users/macbook_13_1278/feelcalm`
-4. Open extension options and paste your OpenAI API key.
-5. Join a Google Meet call.
-6. Turn on Meet captions.
-7. Translation panel appears in top-right corner.
+1. Install dependencies:
+   - `npm install`
+2. Build extension:
+   - `npm run build`
+3. Open Chrome: `chrome://extensions`.
+4. Enable **Developer mode**.
+5. Click **Load unpacked** and select:
+   - `/Users/macbook_13_1278/feelcalm/dist`
+6. Open extension options and paste your OpenAI API key.
+7. Join a Google Meet call and enable captions.
+
+## Project structure
+
+- Static extension files: `public/`
+  - `public/manifest.json`
+  - `public/popup.html`
+  - `public/options.html`
+  - `public/content.css`
+  - `public/icons/*`
+- React UI source:
+  - `src/popup/App.jsx` + `src/popup/main.jsx`
+  - `src/options/App.jsx` + `src/options/main.jsx`
+- Shared reusable UI components:
+  - `src/shared/components/*`
+- Build output:
+  - `dist/` (bundled scripts + copied static files from `public/`)
 
 ## Build for release
 

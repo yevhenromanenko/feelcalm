@@ -12,5 +12,9 @@
   "devDependencies": {
     "esbuild": "^0.25.0",
     "javascript-obfuscator": "^4.1.1"
+  },
+  "dependencies": {
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
   }
 }

@@ -75,27 +75,7 @@
     </style>
   </head>
   <body>
-    <div class="title">feelcalm</div>
-    <div class="row">
-      <button id="showBtn">Show panel</button>
-      <button id="hideBtn">Hide panel</button>
-    </div>
-    <div style="margin-top:8px">
-      <label for="positionSelect" class="field-label">Panel position</label>
-      <select id="positionSelect" class="field-control">
-        <option value="right">Right</option>
-        <option value="center">Center</option>
-        <option value="left">Left</option>
-      </select>
-    </div>
-    <div style="margin-top:8px">
-      <label for="resumeText" class="field-label">Resume context for Coach</label>
-      <textarea id="resumeText" class="field-control" placeholder="Paste your resume/summary here..."></textarea>
-      <button id="saveResumeBtn" class="full">Save resume context</button>
-    </div>
-    <button id="settingsBtn" class="full">Open settings</button>
-    <div id="status" class="status">Open Meet tab to control panel.</div>
-
+    <div id="root"></div>
     <script src="popup.js"></script>
   </body>
 </html>

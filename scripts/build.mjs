@@ -8,22 +8,18 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, "..");
 const distDir = path.join(rootDir, "dist");
+const publicDir = path.join(rootDir, "public");
 const shouldObfuscate = process.argv.includes("--obfuscate");
 
 const jsEntries = {
   background: path.join(rootDir, "background.js"),
   content: path.join(rootDir, "content.js"),
-  popup: path.join(rootDir, "popup.js"),
-  options: path.join(rootDir, "options.js")
+  popup: path.join(rootDir, "src/popup/main.jsx"),
+  options: path.join(rootDir, "src/options/main.jsx")
 };
 
-const staticFiles = ["manifest.json", "popup.html", "options.html", "content.css"];
-
 async function copyStaticAssets() {
-  for (const file of staticFiles) {
-    await cp(path.join(rootDir, file), path.join(distDir, file), { force: true });
-  }
-  await cp(path.join(rootDir, "icons"), path.join(distDir, "icons"), { recursive: true, force: true });
+  await cp(publicDir, distDir, { recursive: true, force: true });
 }
 
 async function obfuscateBuiltFiles() {
@@ -63,6 +59,7 @@ async function main() {
     minify: true,
     format: "iife",
     platform: "browser",
+    jsx: "automatic",
     target: ["chrome120"],
     legalComments: "none"
   });
